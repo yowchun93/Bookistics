@@ -5,6 +5,10 @@
       <span><%= html_encode(book.title) %></span>
       <span>(<%= html_encode(book.authors) %>)</span>
     </div>
-    <div class="span3 columns"><%= render 'add_book_form', :book => book %></div>
+    <div class="span3 columns">
+      <div id="book-controls-<%= book.asin %>">
+        <%= render 'shared/book_controls', :asin => book.asin %>
+      </div>
+    </div>
   </div>
 </li>

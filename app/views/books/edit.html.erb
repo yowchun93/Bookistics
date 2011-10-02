@@ -1,4 +1,4 @@
-<%= render 'shared/book', :book => @book, :user => nil %>
+<%= render 'shared/book', :book => @book, :user => nil, :dont_render_controls => true %>
 <p>
 <%= form_tag(book_path(@book.asin), :remote => :true, :method => :put) do %>
   <div class="clearfix">
@@ -18,6 +18,9 @@
       <div class="span5 columns">
         <div class="align-center">
           <%= submit_tag 'Update', :class => 'btn primary' %>
+          <%= link_to(book_path(@book.asin), :remote => true, :method => :delete) do %>
+            <span class="btn danger">Remove from list!</span>
+          <% end %>
         </div>
       </div>
     </div>

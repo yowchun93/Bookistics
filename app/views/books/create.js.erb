@@ -1,1 +1,1 @@
-location.href = '<%= book_path(@asin) %>';
+$('#book-controls-<%= @asin %>').html('<%= render('shared/book_controls', :asin => @asin).gsub(/\n+/, '').html_safe %>');

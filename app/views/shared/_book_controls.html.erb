@@ -1,0 +1,9 @@
+<% if current_user %>
+  [
+  <% if current_user.has_book?(asin) %>
+    <%= link_to 'Remove', book_path(asin), :remote => true, :method => :delete %>
+  <% else %>
+    <%= link_to 'Add', book_path(asin), :remote => true, :method => :post %>
+  <% end %>
+  ]
+<% end %>

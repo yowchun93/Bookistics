@@ -23,15 +23,11 @@
         <% end %>
       </div>
     </div>
-    <% if current_user %>
+    <% unless defined?(dont_render_controls) and dont_render_controls %>
       <div class="span3 columns">
-        [
-        <% if current_user.has_book?(book.asin) %>
-          <%= link_to 'Remove', book_path(book), :remote => true, :method => :delete %>
-        <% else %>
-          <%= link_to 'Add', book_path(book), :remote => true, :method => :post %>
-        <% end %>
-        ]
+        <div id="book-controls-<%= book.asin %>">
+          <%= render 'shared/book_controls', :asin => book.asin %>
+        </div>
       </div>
     <% end %>
   </div>

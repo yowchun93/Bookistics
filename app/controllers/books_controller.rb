@@ -80,9 +80,9 @@ class BooksController < ApplicationController
 
   def destroy
     @asin = params[:id]
-    log = current_user.find_log(params[:id])
+    log = current_user.find_log(@asin)
     log.destroy
-    flash[:notice] = "Book removed from the list!"
+    current_user.books(true).empty? # This is here to refresh the associations since we deleted one.
   end
 
   private
