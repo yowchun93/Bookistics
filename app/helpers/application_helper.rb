@@ -13,6 +13,6 @@ module ApplicationHelper
     return nil unless
       value.respond_to? :acts_like_date? or value.respond_to? :to_date
 
-    (value.respond_to?(:to_date) ? value.to_date : value).format_like('January 20, 1900')
+    (value.respond_to?(:to_date) ? value.to_date : value).format_like('01/31/2011')
   end
 end
