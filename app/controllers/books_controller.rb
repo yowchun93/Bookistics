@@ -59,13 +59,15 @@ class BooksController < ApplicationController
   def update
     start_date = Chronic.parse(params[:start_date])
     finish_date = Chronic.parse(params[:finish_date])
+    use_for_statistics = params[:use_for_statistics] || false
 
-    unless (start_date.nil? and !params[:start_date].empty?) or
-        (finish_date.nil? and !params[:finish_date].empty?)
+    unless (start_date.nil? and !params[:start_date].blank?) or
+        (finish_date.nil? and !params[:finish_date].blank?)
       log = current_user.find_log(params[:id])
 
-      log.start_date = (params[:start_date].empty?) ? nil : start_date.to_date
-      log.finish_date = (params[:finish_date].empty?) ? nil : finish_date.to_date
+      log.start_date = (params[:start_date].blank?) ? nil : start_date.to_date
+      log.finish_date = (params[:finish_date].blank?) ? nil : finish_date.to_date
+      log.use_for_statistics = use_for_statistics
 
       if log.valid?
         log.save!
@@ -76,6 +78,8 @@ class BooksController < ApplicationController
     else
       flash[:error] = 'Date was not recognized!'
     end
+
+    redirect_to edit_book_path(params[:id])
   end
 
   def destroy

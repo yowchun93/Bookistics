@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110925080558) do
+ActiveRecord::Schema.define(:version => 20111002025512) do
 
   create_table "authentications", :force => true do |t|
     t.string    "uid",        :null => false
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20110925080558) do
     t.date      "finish_date"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.boolean   "use_for_statistics", :default => true, :null => false
   end
 
   create_table "sessions", :force => true do |t|

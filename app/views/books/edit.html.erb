@@ -1,31 +1,44 @@
 <%= render 'shared/book', :book => @book, :user => nil, :dont_render_controls => true %>
+<hr />
 <p>
-<%= form_tag(book_path(@book.asin), :remote => :true, :method => :put) do %>
-  <div class="clearfix">
-    <div class="row">
-      <div class="span5 columns">
-        <%= label_tag 'start_date', 'Start Date' %>
-        <div class="input">
-          <%= text_field_tag 'start_date', format_date(@log.start_date), :class => 'medium date-picker' %>
+  <%= form_tag(book_path(@book.asin), :method => :put) do %>
+    <div class="clearfix">
+      <p>
+        <div class="row">
+          <div class="span5 columns">
+            <%= label_tag 'start_date', 'Start Date' %>
+            <div class="input">
+              <%= text_field_tag 'start_date', format_date(@log.start_date), :class => 'medium date-picker' %>
+            </div>
+          </div>
+          <div class="span5 columns">
+            <%= label_tag 'finish_date', 'Finish Date' %>
+            <div class="input">
+              <%= text_field_tag 'finish_date', format_date(@log.finish_date), :class => 'medium date-picker' %>
+            </div>
+          </div>
+          <div class="span4 offset1 columns">
+            <%= label_tag 'use_for_statistics', 'Use for statistics?' %>
+            <div class="input">
+              <%= check_box_tag 'use_for_statistics', true, @log.use_for_statistics %>
+            </div>
+          </div>
+        </div>
+      </p>
+      <p>
+        <div class="row">
+          <div class="span5 offset5 columns">
+            <div class="align-center">
+              <%= submit_tag 'Update', :class => 'btn primary' %>
+              <%= link_to(book_path(@book.asin), :remote => true, :method => :delete) do %>
+                <span class="btn danger">Remove from list!</span>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="span5 columns">
-        <%= label_tag 'finish_date', 'Finish Date' %>
-        <div class="input">
-          <%= text_field_tag 'finish_date', format_date(@log.finish_date), :class => 'medium date-picker' %>
-        </div>
-      </div>
-      <div class="span5 columns">
-        <div class="align-center">
-          <%= submit_tag 'Update', :class => 'btn primary' %>
-          <%= link_to(book_path(@book.asin), :remote => true, :method => :delete) do %>
-            <span class="btn danger">Remove from list!</span>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
+    </p>
+  <% end %>
 </p>
 <p>
   <sub>Add the dates when you started your book, and when you finished it. If you only add the start date its fine, it means you are still reading it!</sub>
