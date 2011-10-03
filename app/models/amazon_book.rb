@@ -1,6 +1,6 @@
 class AmazonBook
   # Numbers of results to return in find()
-  SEARCH_RESULTS = 5
+  SEARCH_RESULTS = 10
 
   EMPTY_IMAGE_URL = 'no_cover.gif'
 
