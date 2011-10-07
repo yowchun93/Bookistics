@@ -42,7 +42,7 @@ class Statistics
            and reading_logs.start_date is not null
            and reading_logs.finish_date is not null
            and use_for_statistics = 't'", user.id)
-        .sum('books.pages')
+        .sum('books.pages').to_i
     end
 
     def user_unread_books (user)
