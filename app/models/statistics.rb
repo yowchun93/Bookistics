@@ -78,7 +78,7 @@ class Statistics
                           and finish_date is not null
                           and use_for_statistics = 't'", user.id)
                   .map { |log| DAYS_PER_YEAR / (log.finish_date - log.start_date).to_f  }
-      samples.inject(:+) / samples.size
+      samples.size != 0 ? (samples.inject(:+) / samples.size) : 0.0
     end
 
     def user_average_pages_per_day (user)
@@ -90,7 +90,8 @@ class Statistics
     end
 
     def user_average_pages_per_year (user)
-      (user_read_pages(user) / user_read_books(user)) * user_average_books_per_year(user)
+      user_books = user_read_books(user)
+      user_books != 0 ? (user_read_pages(user) / user_books) * user_average_books_per_year(user) : 0.0
     end
 
     def user_average_days_per_book (user)
