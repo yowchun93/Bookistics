@@ -13,20 +13,24 @@ class Statistics
     end
 
     def user_total_books (user)
-      ReadingLog
-        .where('user_id = ?', user.id)
-        .count(:id)
+      user.books.size
     end
 
     def user_reading_books (user)
       ReadingLog
-        .where('user_id = ? and start_date is not null and finish_date is null', user.id)
+        .where("user_id = ?
+                and start_date is not null
+                and finish_date is null
+                and use_for_statistics = 't'", user.id)
         .count
     end
 
     def user_read_books (user)
       ReadingLog
-        .where('user_id = ? and start_date is not null and finish_date is not null', user.id)
+        .where("user_id = ?
+                and start_date is not null
+                and finish_date is not null
+                and use_for_statistics = 't'", user.id)
         .count
     end
 
@@ -34,26 +38,31 @@ class Statistics
       ReadingLog
         .joins(:book)
         .where(
-          'reading_logs.user_id = ? and reading_logs.start_date is not null and reading_logs.finish_date is not null',
-          user.id)
+          "reading_logs.user_id = ?
+           and reading_logs.start_date is not null
+           and reading_logs.finish_date is not null
+           and use_for_statistics = 't'", user.id)
         .sum('books.pages')
     end
 
     def user_unread_books (user)
       ReadingLog
-        .where('user_id = ? and start_date is null and finish_date is null', user.id)
+        .where("user_id = ?
+                and start_date is null
+                and finish_date is null
+                and use_for_statistics = 't'", user.id)
         .count
     end
 
     def user_reading_since (user)
       ReadingLog
-        .where('user_id = ? ', user.id)
+        .where("user_id = ? and use_for_statistics = 't'", user.id)
         .minimum('start_date')
     end
 
     def user_reading_last (user)
       ReadingLog
-        .where('user_id = ? ', user.id)
+        .where("user_id = ? and use_for_statistics = 't'", user.id)
         .maximum('finish_date')
     end
 
