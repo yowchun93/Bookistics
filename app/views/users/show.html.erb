@@ -17,6 +17,7 @@
 </ul>
 
 <div class="tab-content">
+
 <div class="active" id="reading">
   <%= render :partial => 'shared/book',
              :collection => @reading_books,
@@ -36,14 +37,34 @@
 </div>
 
 <div id="statistics">
-  <ul class="unstyled">
-    <li><h4>Has read <%= Statistics.user_read_books(@user) %> books since <%= format_date Statistics.user_reading_since(@user) %>.</h4></li>
-    <li><h4>Has read <%= Statistics.user_read_pages(@user) %> pages since <%= format_date Statistics.user_reading_since(@user) %>.</h4></li>
-    <li><h4>Averages <%= '%2.2f' % Statistics.user_average_books_per_month(@user) %> books per month.</h4></li>
-    <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_month(@user) %> pages per month.</h4></li>
-    <li><h4>Averages <%= '%2.2f' % Statistics.user_average_books_per_year(@user) %> books per year.</h4></li>
-    <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_year(@user) %> pages per year.</h4></li>
-    <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_day(@user) %> pages per day.</h4></li>
-  </ul>
+  <div class="row">
+    <div class="span8 columns">
+      <ul class="unstyled">
+        <li><h4>Has read <%= Statistics.user_read_books(@user) %> books since <%= format_date Statistics.user_reading_since(@user) %>.</h4></li>
+        <li><h4>Has read <%= Statistics.user_read_pages(@user) %> pages since <%= format_date Statistics.user_reading_since(@user) %>.</h4></li>
+        <li><h4>Averages <%= '%2.2f' % Statistics.user_average_books_per_month(@user) %> books per month.</h4></li>
+        <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_month(@user) %> pages per month.</h4></li>
+        <li><h4>Averages <%= '%2.2f' % Statistics.user_average_books_per_year(@user) %> books per year.</h4></li>
+        <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_year(@user) %> pages per year.</h4></li>
+        <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_day(@user) %> pages per day.</h4></li>
+      </ul>
+    </div>
+    <div class="span8 columns">
+      <p>
+        Statistics are calculated simply based on calculating the time you took for each of your read books and
+        averaging them per year, month and day. The same for pages.
+      </p>
+      <p>
+        This basically means that if you read a book really quick, you may still average a lot of books per year,
+        even if you just read only that one. That's why it is an average!
+      </p>
+      <p>
+        Set up personal goals on your own about how many actual books to read in a year! Or a month! And do everything you
+        can to meet these goals, it will improve your knowledge, your reading speed, your comprehension, etc. It's like body
+        building, but mind building! (We may add a feature in the future you help you out with this ;)
+      </p>
+    </div>
+  </div>
 </div>
+
 </div>
