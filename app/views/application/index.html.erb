@@ -1,30 +1,37 @@
 <% unless RAILS_ENV == 'production' %>
-<div class="centered staging">
-<h1>Welcome</h1>
-<p>
-This is a <span class="label important">beta/staging version</span> of a book reading list application. The purpose of this little app is to help you keep track of the books you are reading, how much time is taking you to read them, some statistics about your reading, etc.
-</p>
-<p>
-If you are here, log in using your twitter account and feel free to try it and <%= mail_to "bobby3999@yahoo.com", "let us know" %> if you have any <span class="label warning">problem</span> or <span class="label success">suggestion</span>.
-</p>
-<p>
-Keep in mind this is an staging/beta version, so it may be ugly, or missing features, or buggy so bear with us, let us know and enjoy the ride.
-</p>
-</div>
-<div class="centered staging">
-  <h3>Changes in the latest version:</h3>
-  <dl>
-    <dt>Added statistics to the site! Yes finally!</dt>
-    <dd>Statistics are now displayed in each user profile!</dd>
-    <dt>Improved the application menu to be more helpful.</dt>
-    <dd>Menu names should be more descriptive, plus, they have tooltips now displaying their meaning.</dd>
-    <dt>Improved user profiles!</dt>
-    <dd>User profiles now have books separated in three tabs, "reading", "read", "Wants to read" making it easier to navigate.</dd>
-    <dt>Avatars !</dt>
-    <dd>User avatars are now displayed in user profiles and the user list!</dd>
-  </dl>
-  <p>
-    <sub>Latest version: 1.0.1, updated @ September 19th, 2011 - 10:35PM</sub>
-  </p>
+<div class="row">
+  <div class="span8 columns">
+    <h1>Welcome</h1>
+    <p>
+      This is a <span class="label important">beta/staging version</span> of a book reading list application. The purpose of this little app is to help you keep track of the books you are reading, how much time is taking you to read them, some statistics about your reading, etc.
+    </p>
+    <p>
+      If you are here, log in using your twitter account and feel free to try it and <%= mail_to "bobby3999@yahoo.com", "let us know" %> if you have any <span class="label warning">problem</span> or <span class="label success">suggestion</span>.
+    </p>
+    <p>
+      Keep in mind this is an staging/beta version, so it may be ugly, or missing features, or buggy so bear with us, let us know and enjoy the ride.
+    </p>
+  </div>
+  <div class="span8 columns">
+    <h2>Changes in the latest version:</h2>
+    <p>
+      <dl>
+        <dt>Improved book controls!</dt>
+        <dd>Now you can add books and remove them from every part they are displayed in the site! You dont have to each individual page to do it!</dd>
+        <dt>Improved search!</dt>
+        <dd>Now you get more results from search! Plus you can add more than one book per search if applicable!</dd>
+        <dt>Improved statistics!</dt>
+        <dd>Statistics were not that precise in the last version, now averages should be a lot more precise.</dd>
+        <dt>Added a new "Use for statistics" option</dt>
+        <dd>Now you can select if you want a particular book to be used in statistics calculations (defaults to yes).
+        This means you can add the books you have read before to show them off but avoid they affecting your current statistics. Go nuts!</dd>
+        <dt>Added a default "No cover" image for books without it.<dt>
+        <dd>Easy enough ;)</dd>
+      </dl>
+    </p>
+    <p>
+      <sub>Latest version: 1.0.2, updated @ October 7th, 2011 - 3:00AM</sub>
+    </p>
+  </div>
 </div>
 <% end %>
