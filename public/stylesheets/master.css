@@ -109,6 +109,7 @@ div.editorial_review span.control a {
 }
 
 div.avatar {
+    overflow: hidden;
     border: 1px solid #ccc;
     padding: 5px 5px 5px 5px;
     width: 48px;
