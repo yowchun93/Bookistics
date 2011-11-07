@@ -7,7 +7,10 @@ class AmazonBook
   ATTRIBUTES_LIST = [ :asin, :title, :authors, :pages, :image_url, :icon_url, :details_url, :editorial_review ]
   attr_accessor *ATTRIBUTES_LIST
 
-  ASIN::Configuration.configure :secret => ENV['AMAZON_SECRET'], :key => ENV['AMAZON_KEY'], :logger => nil
+  ASIN::Configuration.configure :secret => ENV['AMAZON_SECRET'],
+                                :key => ENV['AMAZON_KEY'],
+                                :associate_tag => ENV['AMAZON_ASSOCIATE_TAG'],
+                                :logger => nil
 
   def initialize (attributes = {})
     attributes.each do |name, value|
@@ -24,8 +27,10 @@ class AmazonBook
   end
 
   class << self
-    def find_debug (asin)
-      lookup = ASIN::Client.instance.lookup(asin, :ResponseGroup => :Large)
+    def debug_search (keywords)
+      results = ASIN::Client.instance.search(:Keywords      => keywords,
+                                             :SearchIndex   => :Books,
+                                             :ResponseGroup => :Medium) || []
     end
 
     def find (keywords)
