@@ -148,3 +148,44 @@ img.block {
     border: 1px solid #000;
 }
 
+
+#users_list .row {
+    margin: 0;
+    padding: 0;
+}
+
+#users_list .row ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+#users_list li.user {
+    float: left;
+    margin: 0;
+    padding: 0;
+
+    height: auto;
+    width: auto;
+}
+
+#users_list li.user:hover {
+    background-color: transparent;
+}
+
+#users_list .avatar {
+    border: 0;
+    padding: 0;
+    margin: 1px;
+}
+
+#users_list .avatar img {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#users_list {
+    margin-bottom: 20px;
+}

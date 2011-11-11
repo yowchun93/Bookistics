@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :reading_logs
   has_many :books, :through => :reading_logs
 
-  self.per_page = 48
+  self.per_page = 180
 
   def to_param
     nickname
