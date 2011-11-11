@@ -16,7 +16,8 @@ class UsersController < ApplicationController
 
   def show
     if User.param_exists? params[:id]
-      @tab = params[:tab].to_sym || :reading
+      @tab = params[:tab] || :reading
+      @tab = @tab.to_sym
 
       @tab = :reading unless USER_PROFILE_TABS.keys.include? @tab
 
