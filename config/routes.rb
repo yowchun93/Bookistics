@@ -6,6 +6,8 @@ ReadingList::Application.routes.draw do
 
   resources :users, :only => [ :index, :show ]
 
+  get 'users/:id/:tab' => 'users#show'
+
   match '/auth/:provider/callback' => 'sessions#create'
   match '/auth/failure'            => 'sessions#failure'
   match '/signout'                 => 'sessions#destroy'

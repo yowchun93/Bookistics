@@ -1,4 +1,13 @@
 class UsersController < ApplicationController
+
+  USER_PROFILE_TABS = {
+    :reading    => "Reading",
+    :read       => "Read",
+    :to_read    => "Wants to read",
+    :statistics => "Statistics"
+  }
+
+
   def index
     @users = User
                .paginate(:page => params[:page])
@@ -7,10 +16,18 @@ class UsersController < ApplicationController
 
   def show
     if User.param_exists? params[:id]
-      @user                = User.from_param(params[:id])
-      @reading_books       = Book.user_reading_books(@user)
-      @read_books          = Book.user_read_books(@user)
-      @wants_to_read_books = Book.user_wants_to_read_books(@user)
+      @tab = params[:tab].to_sym || :reading
+
+      @tab = :reading unless USER_PROFILE_TABS.keys.include? @tab
+
+      @user = User.from_param(params[:id])
+
+      @books = case @tab
+                 when :reading then Book.user_reading_books(@user)
+                 when :read    then Book.user_read_books(@user)
+                 when :to_read then Book.user_wants_to_read_books(@user)
+                 else []
+               end
     else
       redirect_to_root_with_error("User not found")
     end
