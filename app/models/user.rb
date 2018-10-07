@@ -17,6 +17,13 @@ class User < ActiveRecord::Base
     self.reading_logs.select { |log| log.book.asin == asin }.first if self.has_book?(asin)
   end
 
+  def add_book(book)
+    if !self.has_book? book.asin
+      self.books << book
+      self.save!
+    end
+  end
+
   class << self
     def create_from_auth (auth)
       user = User.new

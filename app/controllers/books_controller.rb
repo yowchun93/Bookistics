@@ -22,14 +22,15 @@ class BooksController < ApplicationController
     if @asin.present?
       @book = Book.find_by_asin(@asin)
 
-      if @book.present?
-        add_book_to_current_user(@book) unless current_user.has_book? @book.asin
-      else
+      if !@book.present?
         amazon_book = AmazonBook.find_by_asin(@asin)
         if amazon_book.present?
           @book = Book.new(amazon_book.attributes)
-          add_book_to_current_user(@book)
         end
+      end
+      if @book.present?
+        # add_book_to_current_user(@book) unless current_user.has_book? @book.asin
+        current_user.add_book(@book)
       end
     end
 
@@ -104,9 +105,7 @@ class BooksController < ApplicationController
   end
 
   def add_book_to_current_user (book)
-    unless current_user.nil?
-      current_user.books << book
-      current_user.save!
-    end
+    current_user.books << book
+    current_user.save!
   end
 end
