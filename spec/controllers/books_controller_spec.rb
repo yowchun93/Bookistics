@@ -19,15 +19,10 @@ describe BooksController do
       let!(:book) { Book.create!(book_attributes) }
       
       it "adds book to the user if he does not have it " do 
+        user.should_receive(:add_book).with(book)
         post :create, id: asin 
-        user.books.should == [ book ]
       end
-      
-      it "does not add the book to the user if user already has it" do 
-        user.books << book
-        post :create, id: asin 
-        user.books.should == [ book ]
-      end
+    
     end
     
     context "when the book is not in the database" do     

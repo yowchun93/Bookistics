@@ -21,17 +21,13 @@ class BooksController < ApplicationController
 
     if @asin.present?
       @book = Book.find_by_asin(@asin)
-
       if !@book.present?
         amazon_book = AmazonBook.find_by_asin(@asin)
         if amazon_book.present?
           @book = Book.new(amazon_book.attributes)
         end
       end
-      if @book.present?
-        # add_book_to_current_user(@book) unless current_user.has_book? @book.asin
-        current_user.add_book(@book)
-      end
+      current_user.add_book(@book) if @book.present?
     end
 
     respond_to do |format|
